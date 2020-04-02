@@ -8,8 +8,8 @@ const useTimer = () => {
     let interval;
     if (isRunning) {
       interval = setInterval(
-        () => setElapsedTime(prevElapsedTime => prevElapsedTime + 0.1),
-        100
+        () => setElapsedTime(prevElapsedTime => prevElapsedTime + 0.01),
+        10
       );
     }
     return () => clearInterval(interval);
@@ -34,10 +34,7 @@ export const useStopWatch = () => {
   };
 
   const handleAddLap = () => {
-    const prevTotal =
-      laps.length > 0 ? laps.reduce((acc, curr) => acc + curr, 0) : 0;
-    const currentLap = laps.length > 0 ? elapsedTime - prevTotal : elapsedTime;
-    isRunning && setLaps([...laps, currentLap]);
+    isRunning && setLaps([...laps, elapsedTime]);
   };
 
   return {

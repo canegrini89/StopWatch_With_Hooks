@@ -1,25 +1,67 @@
 import React from 'react';
 import { useStopWatch } from './customHooks';
+import LapList from './LapList';
 
 const StopWatch = () => {
-  const { elapsedTime, startTimer } = useStopWatch();
+  const {
+    elapsedTime,
+    startTimer,
+    stopTimer,
+    isRunning,
+    resetTimer,
+    addLap,
+    laps
+  } = useStopWatch();
 
   const formatTimeOutput = time => {
-    let hr = 0;
-    let min = 0;
-    let sec = 0;
-    const newTime = time.split('.');
+    const splitTime = time.split('.');
+    let miliseconds = splitTime[1];
+    let seconds = splitTime[0];
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(seconds / 3600);
 
-    // Hace con cuentas de division y calcular el resto para poder meterlo en condicionales y poder sacar el 00 de cada una de las operaciones
+    seconds -= hours * 3600;
+    seconds -= minutes * 60;
 
-    console.log(min, sec);
+    if (hours < 10) {
+      hours = '0' + hours;
+    }
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+    }
+    if (seconds < 10) {
+      seconds = '0' + seconds;
+    }
+
+    return `${hours} : ${minutes} : ${seconds} : ${miliseconds}`;
+  };
+
+  const handleStartStop = () => {
+    isRunning ? stopTimer() : startTimer();
+  };
+
+  const handleLapReset = () => {
+    isRunning ? addLap() : resetTimer();
   };
 
   return (
-    <div>
-      <h1>{formatTimeOutput(elapsedTime)}</h1>
-      <button onClick={() => startTimer()}>Start</button>
-      {/* Agregar los restantes botones y los laps */}
+    <div className='wrapper'>
+      <h1 className='display'>{formatTimeOutput(elapsedTime)}</h1>
+      <div className='button_wrapper'>
+        <button
+          className={isRunning ? 'stop_button' : 'start_button'}
+          onClick={handleStartStop}
+        >
+          {isRunning ? 'STOP' : 'START'}
+        </button>
+        <button
+          className={isRunning ? 'lap_button' : 'reset_button'}
+          onClick={handleLapReset}
+        >
+          {isRunning ? 'LAP' : 'RESET'}
+        </button>
+      </div>
+      {laps.length > 0 && <LapList laps={laps} />}
     </div>
   );
 };

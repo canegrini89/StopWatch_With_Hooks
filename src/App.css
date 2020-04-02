@@ -1,0 +1,74 @@
+.container {
+  background-color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+  height: 100vh;
+}
+
+.wrapper > .display {
+  font-size: 60px;
+  color: #ffffff;
+  margin: 5rem;
+}
+
+.wrapper > .button_wrapper {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.button_wrapper > .start_button {
+  padding: 20px;
+  border-radius: 25px;
+  border-style: none;
+  font-size: 30px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  background-color: green;
+}
+
+.button_wrapper > .stop_button {
+  padding: 20px;
+  border-radius: 25px;
+  border-style: none;
+  font-size: 30px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  background-color: orange;
+}
+.button_wrapper > .lap_button {
+  padding: 20px;
+  border-radius: 25px;
+  border-style: none;
+  font-size: 30px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  background-color: goldenrod;
+}
+.button_wrapper > .reset_button {
+  padding: 20px;
+  border-radius: 25px;
+  border-style: none;
+  font-size: 30px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  background-color: white;
+}
+
+.lap_list {
+  color: #fff;
+  font-size: 20px;
+  list-style: none;
+}
+
+.lap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px auto;
+  padding: 10px;
+  border: 1px solid lightskyblue;
+}
